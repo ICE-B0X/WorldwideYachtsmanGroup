@@ -11,18 +11,34 @@
     <!-- Header -->
     <header id="header">
       <img
-        src="img/logo-white-circle.png"
+        src="/img/logo-white-circle.png"
         alt="Logo"
         class="logo-image"
         id="logoImage"
       />
       <div class="logo">WWYG</div>
       <span class="logo-icon">〰</span>
-      <nav>
-        <a href="#vision">The Vision</a>
-        <a href="#technology">Our Solutions</a>
+      <nav class="desktop-nav">
+        <a href="#technology">Our Suite</a>
+        <a href="#about">About Us</a>
       </nav>
+      <!-- Mobile Hamburger -->
+      <button class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-content">
+        <button class="mobile-menu-close" id="mobileMenuClose">✕</button>
+        <nav class="mobile-nav">
+          <a href="#technology">Our Suite</a>
+          <a href="#about">About Us</a>
+        </nav>
+      </div>
+    </div>
 
     <!-- Hero Section -->
     <div class="hero-wrapper">
@@ -215,20 +231,50 @@
       // Navbar scroll animation
       const header = document.getElementById("header");
       const logoImage = document.getElementById("logoImage");
+      const hamburger = document.getElementById("hamburger");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const mobileMenuClose = document.getElementById("mobileMenuClose");
       let lastScroll = 0;
 
       window.addEventListener("scroll", () => {
         const currentScroll = window.pageYOffset;
 
-        if (currentScroll > 100) {
+        if (currentScroll > 100 && window.innerWidth > 768) {
           header.classList.add("scrolled");
-          logoImage.src = "img/logo-black-circle.png";
-        } else {
+          logoImage.src = "/img/logo-black-circle.png";
+        } else if (window.innerWidth > 768) {
           header.classList.remove("scrolled");
-          logoImage.src = "img/logo-white-circle.png";
+          logoImage.src = "/img/logo-white-circle.png";
         }
 
         lastScroll = currentScroll;
+      });
+
+      // Mobile menu toggle
+      hamburger.addEventListener("click", () => {
+        mobileMenu.classList.add("active");
+        document.body.style.overflow = "hidden"; // Prevent scrolling
+      });
+
+      mobileMenuClose.addEventListener("click", () => {
+        mobileMenu.classList.remove("active");
+        document.body.style.overflow = ""; // Restore scrolling
+      });
+
+      // Close menu when clicking a link
+      document.querySelectorAll(".mobile-nav a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.remove("active");
+          document.body.style.overflow = "";
+        });
+      });
+
+      // Close menu when clicking outside
+      mobileMenu.addEventListener("click", (e) => {
+        if (e.target === mobileMenu) {
+          mobileMenu.classList.remove("active");
+          document.body.style.overflow = "";
+        }
       });
 
       // Scroll animation for grid items
