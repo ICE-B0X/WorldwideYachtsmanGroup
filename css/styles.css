@@ -632,7 +632,7 @@ header.scrolled .hamburger span {
     gap: 1rem;
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(20px);
-    /* border-radius: 12px; */
+    border-radius: 0px;
   }
 
   /* Show hamburger, hide desktop nav */
