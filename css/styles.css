@@ -658,6 +658,10 @@ header.scrolled .hamburger span {
     color: #333 !important;
   }
 
+  .logo-icon {
+    display: none;
+  }
+
   .hero-text-main {
     font-size: 3.5rem;
   }
