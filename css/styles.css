@@ -104,7 +104,12 @@ header.scrolled .desktop-nav a {
 }
 
 .desktop-nav a:hover {
-  color: #0066cc;
+  /* color: #0066cc; */
+  color: #ccc;
+}
+
+header.scrolled .desktop-nav a:hover {
+  color: #999;
 }
 
 /* Hamburger Menu */
